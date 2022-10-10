@@ -46,8 +46,3 @@ class ticketOrders(db.Model):
     eventId = db.Column(db.Integer, db.ForeignKey('events.id'),
         nullable=False)
     ticketType = db.Column(db.String(32), nullable=False)
-
-
-# Creates tables
-with app.app_context():
-    db.create_all()
