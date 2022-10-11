@@ -12,12 +12,15 @@ class LoginForm(FlaskForm):
 
  # this is the registration form
 class RegisterForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired()])
+    user_name = StringField("User Name", validators=[InputRequired()])
     email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
     #linking two fields - password should be equal to data entered in confirm
     password=PasswordField("Password", validators=[InputRequired(),
                   EqualTo('confirm', message="Passwords should match")])
     confirm = PasswordField("Confirm Password")
+    name = StringField("Name", validators=[InputRequired()])
+    address = StringField("Address")
+    contact_number = StringField("Phone Number", validators=[InputRequired(),])
 
     #submit button
     submit = SubmitField("Register")

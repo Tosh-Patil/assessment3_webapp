@@ -2,10 +2,11 @@ from . import db
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func  # Used for datetime object
+from flask_login import UserMixin
 
 
 # Defines the parameters for the 'User' db table
-class Users(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True, nullable=False)
     email = db.Column(db.String(64), unique=True, nullable=False)
@@ -16,7 +17,7 @@ class Users(db.Model):
 
 
 # Defines the parameters for the 'Events' db table
-class Events(db.Model):
+class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'),
         nullable=False)
@@ -27,7 +28,7 @@ class Events(db.Model):
 
 
 # Defines the parameters for the 'Comments' db table
-class Comments(db.Model):
+class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'),
         nullable=False)
@@ -39,7 +40,7 @@ class Comments(db.Model):
 
 
 # Defines the parameters for the 'ticketOrders' db table
-class ticketOrders(db.Model):
+class ticketOrder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'),
         nullable=False)
