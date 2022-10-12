@@ -41,6 +41,9 @@ def create_app():
 
     from . import auth
     app.register_blueprint(auth.bp)
+
+    with app.app_context():
+        db.create_all()
     
     return app
 
