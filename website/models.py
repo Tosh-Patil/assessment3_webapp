@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
 # Defines the parameters for the 'Events' db table
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'),
+    userId = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
     eventDate = db.Column(db.String(64), nullable=False)
     ticketTypes = db.Column(db.String(64), nullable=False)
@@ -30,9 +30,9 @@ class Event(db.Model):
 # Defines the parameters for the 'Comments' db table
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'),
+    userId = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
-    eventId = db.Column(db.Integer, db.ForeignKey('events.id'),
+    eventId = db.Column(db.Integer, db.ForeignKey('event.id'),
         nullable=False)
     content = db.Column(db.String(512), nullable=False)
     timeCommented = db.Column(db.DateTime(timezone=True),
@@ -42,8 +42,8 @@ class Comment(db.Model):
 # Defines the parameters for the 'ticketOrders' db table
 class ticketOrder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'),
+    userId = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
-    eventId = db.Column(db.Integer, db.ForeignKey('events.id'),
+    eventId = db.Column(db.Integer, db.ForeignKey('event.id'),
         nullable=False)
     ticketType = db.Column(db.String(32), nullable=False)
