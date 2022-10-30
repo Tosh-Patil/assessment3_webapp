@@ -7,6 +7,10 @@ bp = Blueprint('main', __name__, template_folder='templates')
 
 @bp.route('/')
 def index():
+    #Get list of events
+    event = Event.query.order_by(eventName)
+
+
     return render_template('index.html')
 
 @bp.route('/event-info', methods=['GET', 'POST'])
@@ -23,6 +27,7 @@ def event_info(event_id):
 
     if request.method == 'POST':
         #Booking tickets backend here
+        pass
 
     return render_template('Event_Info_Page.html')
 
@@ -31,6 +36,7 @@ def event_creation():
 
     if request.method == 'POST':
         #creating an event backend here
+        pass
 
     return render_template('Event_Creation')
 
