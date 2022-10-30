@@ -14,6 +14,9 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(64))
     address = db.Column(db.String(128))
     contactNumber = db.Column(db.String(32))
+    comments = db.relationship('Comment', backref='user', lazy=True)
+    events = db.relationship('Event', backref='user', lazy=True)
+    ticketorders = db.relationship('ticketOrder', backref='user', lazy=True)
 
 
 # Defines the parameters for the 'Events' db table
@@ -25,6 +28,8 @@ class Event(db.Model):
     ticketTypes = db.Column(db.String(64), nullable=False)
     description = db.Column(db.String(2048), nullable=False)
     eventStatus = db.Column(db.String(32), nullable=False)
+    comments = db.relationship('Comment', backref='event', lazy=True)
+    ticketOrders = db.relationship('ticketOrder', backref='event', lazy=True)
 
 
 # Defines the parameters for the 'Comments' db table
