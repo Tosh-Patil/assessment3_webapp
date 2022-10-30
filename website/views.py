@@ -42,10 +42,12 @@ def event_creation():
 
 @bp.route('Booking_History.html')
 def booking_history():
+    #tickets = ticketOrder.query.query_by(USERID)
 
     return render_template('Booking_History')
 
 
 @bp.route('/user', methods=['GET', 'POST'])
 def user():
+    
     return render_template('user.html')
