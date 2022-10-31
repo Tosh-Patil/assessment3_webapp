@@ -11,7 +11,7 @@ def index():
     event = Event.query.order_by(eventName)
 
 
-    return render_template('index.html')
+    return render_template('index.html', **locals())
 
 @bp.route('/event-info', methods=['GET', 'POST'])
 def event_info(event_id):
@@ -29,7 +29,7 @@ def event_info(event_id):
         #Booking tickets backend here
         pass
 
-    return render_template('Event_Info_Page.html')
+    return render_template('Event_Info_Page.html', **locals())
 
 @bp.route('/event-creation', methods=['GET', 'POST'])
 def event_creation():
@@ -44,7 +44,7 @@ def event_creation():
 def booking_history():
     #tickets = ticketOrder.query.query_by(USERID)
 
-    return render_template('Booking_History')
+    return render_template('Booking_History', **locals())
 
 
 @bp.route('/user', methods=['GET', 'POST'])
