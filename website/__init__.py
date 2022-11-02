@@ -1,10 +1,11 @@
 #import flask - from the package import class
-from flask import Flask 
+from flask import Flask, render_template 
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 db=SQLAlchemy()
+app=Flask(__name__)
 
 #create a function that creates a web application
 # a web server will run this web application
@@ -47,5 +48,14 @@ def create_app():
     
     return app
 
+@app.errorhandler(404) 
+# inbuilt function which takes error as parameter 
+def not_found(e): 
+  return render_template("404.html")
+
+@app.errorhandler(500) 
+# inbuilt function which takes error as parameter 
+def not_found(e):
+  return render_template("500.html")
 
 
