@@ -21,17 +21,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html" style="color:black">Home</a>
+              <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}" style="color:black">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Event_Info_Page.html" style="color:black">Events</a>
+              <a class="nav-link" href="{{ url_for('main.event_info') }}" style="color:black">Events</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black"> More Options
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="Booking_History.html">Booking History</a></li>
-                <li><a class="dropdown-item" href="Event_Creation.html">Create Event</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.booking_history') }}">Booking History</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.event_creation') }}">Create Event</a></li>
               </ul>
             </li>
           </ul>
