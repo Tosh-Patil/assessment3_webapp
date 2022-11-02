@@ -24,7 +24,7 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
-    eventName = db.Column(db.string(64), nullable=False)
+    eventName = db.Column(db.String(64), nullable=False)
     eventDate = db.Column(db.String(64), nullable=False)
     ticketTypes = db.Column(db.String(64), nullable=False)
     description = db.Column(db.String(2048), nullable=False)
