@@ -39,7 +39,7 @@ def event_creation():
         #creating an event backend here
         pass
 
-    return render_template('Event_Creation')
+    return render_template('Event_Creation.html')
 
 @bp.route('/booking_history', methods=['GET', 'POST'])
 def booking_history():
