@@ -1,6 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask import Flask
 from flask import render_template
+from website.models import Event, Comment
 
 bp = Blueprint('main', __name__, template_folder='templates')
 
@@ -8,7 +9,7 @@ bp = Blueprint('main', __name__, template_folder='templates')
 @bp.route('/')
 def index():
     #Get list of events
-    event = Event.query.order_by(eventName)
+    event = Event.query.order_by(Event.eventName)
 
 
     return render_template('index.html', **locals())
@@ -40,11 +41,11 @@ def event_creation():
 
     return render_template('Event_Creation')
 
-@bp.route('Booking_History.html')
+@bp.route('/booking_history', methods=['GET', 'POST'])
 def booking_history():
-    #tickets = ticketOrder.query.query_by(USERID)
+    # tickets = ticketOrder.query.query_by(USERID)
 
-    return render_template('Booking_History', **locals())
+    return render_template('Booking_History.html', **locals())
 
 
 @bp.route('/user', methods=['GET', 'POST'])
