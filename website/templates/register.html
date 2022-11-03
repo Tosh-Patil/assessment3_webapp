@@ -2,38 +2,81 @@
 
 {% import "bootstrap/form.html" as wtf %}
 {% block content %}
- 
+ <!--  -->
  <div class="col-4">
-        <form>
+        <form action="" method="post">
         <h4>Enter Email details</h4>
         <div style="padding-bottom: 20px;"></div>
         <div class="mb-3">
+          <p>
+            {{ form.email.label }}
+            {{ form.email(size=32) }}  
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
+          <!--
           <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
         </div>
 		<div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Username</label>
-          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <p>
+        {{ form.username.label }}
+        {{ form.username(size=32) }}  
+        {% for error in form.username.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+          <!--<label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <p>
+            {{ form.password.label }}
+            {{ form.password(size=32) }}  
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
+          <!--<label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">-->
         </div>
 		<div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Repeat password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+      <p>
+        {{ form.confirm.label }}
+        {{ form.confirm(size=32) }}  
+        {% for error in form.confirm.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+          <!--<label for="exampleInputPassword1" class="form-label">Repeat password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">-->
         </div>
 		<div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Address</label>
-          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <p>
+        {{ form.address.label }}
+        {{ form.address(size=32) }}  
+        {% for error in form.address.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+          <!--<label for="exampleInputEmail1" class="form-label">Address</label>
+          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
         </div>
 		<div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Contact number</label>
-          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <p>
+        {{ form.contact_number.label }}
+        {{ form.contact_number(size=32) }}  
+        {% for error in form.contact_number.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+          <!--<label for="exampleInputEmail1" class="form-label">Contact number</label>
+          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
         </div>
 
-        
-        <button type="button" class="btn btn-outline-light" style="color:silver">Sign Up</button>
+        <p>{{ form.submit() }}</p>
+        <!-- <button type="button" class="btn btn-outline-light" style="color:silver"></button> -->
       </form>
     </div>
 	

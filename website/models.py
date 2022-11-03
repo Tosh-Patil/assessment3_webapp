@@ -11,7 +11,6 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(32), unique=True, nullable=False)
     email = db.Column(db.String(64), unique=True, nullable=False)
     password = db.Column(db.String(64), nullable=False)
-    name = db.Column(db.String(64))
     address = db.Column(db.String(128))
     contactNumber = db.Column(db.String(32))
     comments = db.relationship('Comment', backref='user', lazy=True)

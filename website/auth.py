@@ -1,10 +1,10 @@
 from flask import ( 
     Blueprint, flash, render_template, request, url_for, redirect
 ) 
-from werkzeug.security import generate_password_hash,check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from .forms import LoginForm,RegisterForm
-from flask_login import login_user, login_required,logout_user
+from flask_login import login_user, login_required, logout_user, current_user 
 from . import db
 
 
@@ -15,27 +15,38 @@ bp = Blueprint('auth', __name__, template_folder='templates')
 # registration function
 @bp.route('/register', methods =['GET', 'POST'])
 def register():
+    # Check user is not already logged in
+    if current_user.is_authenticated:
+        return redirect('/index')
     #create the form
     form = RegisterForm()
     if form.validate_on_submit():
-        print('Register form submitted')
-
-        uname = form.user_name.data
-        pwd = form.password.data
-        email = form.email_id.data
-        name = form.name.data
-        address = form.address.data
-        contact = form.contact_number.data
-
+        pwd=form.password.data
         pwd_hash = generate_password_hash(pwd)
 
-        new_user = User(username=uname, email=email, password=pwd, name=name, address=address, contactNumber=contact)
-        db.session.add(new_user)
+        user = User(
+            email=form.email.data,
+            username=form.username.data,
+            address=form.address.data,
+            contactNumber=form.contact_number.data,
+            password=pwd_hash
+        )
+
+       # uname = form.username.data
+       # pwd = form.password.data
+       # email = form.email_id.data
+       # name = form.name.data
+      #  address = form.address.data
+       # contact = form.contact_number.data
+
+       # new_user = User(username=uname, email=email, password=pwd, name=name, address=address, contactNumber=contact)
+        
+        db.session.add(user)
         db.session.commit
         flash('Registered Account')
-        return redirect(url_for('auth.register'))
+        return redirect('/index')
 
-    return render_template('user.html', form=form, heading='REGISTER')
+    return render_template('register.html', title='REGISTER', form=form)
 
 
 
@@ -62,10 +73,11 @@ def authenticate(): #view function
             return redirect(nextp)
         else:
             flash(error)
-    return render_template('user.html', form=login_form, heading='Login')
+    return render_template('login.html', form=login_form, heading='Login')
 
 
 @bp.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect('/index')
