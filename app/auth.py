@@ -15,34 +15,21 @@ bp = Blueprint('auth', __name__, template_folder='templates')
 # registration function
 @bp.route('/register', methods =['GET', 'POST'])
 def register():
-    # Check user is not already logged in
-    if current_user.is_authenticated:
-        return redirect('/index')
     #create the form
     form = RegisterForm()
     if form.validate_on_submit():
-        pwd=form.password.data
-        pwd_hash = generate_password_hash(pwd)
+        pwd_hash = generate_password_hash(form.password.data)
 
         user = User(
-            email=form.email.data,
             username=form.username.data,
+            email=form.email.data,
             address=form.address.data,
-            contactNumber=form.contact_number.data,
+            contactNumber=form.contactNumber.data,
             password=pwd_hash
         )
 
-       # uname = form.username.data
-       # pwd = form.password.data
-       # email = form.email_id.data
-       # name = form.name.data
-      #  address = form.address.data
-       # contact = form.contact_number.data
-
-       # new_user = User(username=uname, email=email, password=pwd, name=name, address=address, contactNumber=contact)
-        
         db.session.add(user)
-        db.session.commit
+        db.session.commit()
         flash('Registered Account')
         return redirect('/index')
 

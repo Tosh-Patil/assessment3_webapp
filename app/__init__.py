@@ -3,8 +3,10 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from config import Config
 
-db=SQLAlchemy()
+
+db=SQLAlchemy() 
 app=Flask(__name__)
 
 #create a function that creates a web application
@@ -13,16 +15,18 @@ def create_app():
   
     app=Flask(__name__)  # this is the name of the module/package that is calling this app
     app.debug=True
-    app.secret_key='utroutoru'
     #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///sitedata.sqlite'
+    app.config.from_object(Config)
+    db = SQLAlchemy(app)
     #initialize db with flask app
     db.init_app(app)
 
     bootstrap = Bootstrap5(app)
     
+
+
     #initialize the login manager
-    login_manager = LoginManager()
+    login_manager = LoginManager(app)
     
     #set the name of the login function that lets user login
     # in our case it is auth.login (blueprintname.viewfunction name)

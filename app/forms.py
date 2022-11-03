@@ -1,8 +1,9 @@
 
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileRequired, FileField, FileAllowed
+from .models import User
 
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
@@ -20,10 +21,16 @@ class RegisterForm(FlaskForm):
     password=PasswordField("Password", validators=[InputRequired()])
     confirm = PasswordField("Confirm Password", validators=[InputRequired(), EqualTo('password')])
     address = StringField("Address")
-    contact_number = StringField("Phone Number", validators=[InputRequired(),])
+    contactNumber = StringField("Phone Number", validators=[InputRequired(),])
 
     #submit button
     submit = SubmitField("Register")
+
+    # Check to ensure username is not already taken
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user is not None:
+            raise ValidationError("Username Taken")
 
 # Create event form
 class CreateEventForm(FlaskForm):

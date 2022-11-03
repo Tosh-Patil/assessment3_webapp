@@ -1,5 +1,5 @@
-from website import create_app, db
-import website.models
+from app import create_app, db
+import app.models
 
 if __name__=='__main__':
     # Creates application environment

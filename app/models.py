@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     comments = db.relationship('Comment', backref='user', lazy=True)
     events = db.relationship('Event', backref='user', lazy=True)
     ticketorders = db.relationship('ticketOrder', backref='user', lazy=True)
-
+    
 
 # Defines the parameters for the 'Events' db table
 class Event(db.Model):

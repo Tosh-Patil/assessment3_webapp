@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask import Flask
 from flask import render_template
-from website.models import Event, Comment
+from app.models import Event, Comment
 
 bp = Blueprint('main', __name__, template_folder='templates')
 
