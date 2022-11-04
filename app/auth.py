@@ -19,7 +19,6 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         pwd_hash = generate_password_hash(form.password.data)
-
         user = User(
             username=form.username.data,
             email=form.email.data,
@@ -27,12 +26,10 @@ def register():
             contactNumber=form.contactNumber.data,
             password=pwd_hash
         )
-
         db.session.add(user)
         db.session.commit()
         flash('Registered Account')
         return redirect('/login')
-
     return render_template('register.html', title='REGISTER', form=form)
 
 
@@ -49,7 +46,7 @@ def authenticate(): #view function
         password = form.password.data
         u1 = User.query.filter_by(username=form.username.data).first()
         if u1 is None:
-            error='Incorrect user name'
+            error='Incorrect username'
         elif not check_password_hash(u1.password, password): # takes the hash and password
             error='Incorrect password'
         if error is None:
@@ -64,4 +61,4 @@ def authenticate(): #view function
 @bp.route('/logout')
 def logout():
     logout_user()
-    return redirect("{{ url_for('views.index') }}")
+    return redirect("/index")
