@@ -27,7 +27,7 @@ def event_info_page():
     choices = get_choices
     form.event_id.choices = choices
     
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         event = Event.query.filter_by(eventName=form.data).first()
         event_id = event.id
         event_user = event.userId
