@@ -2,52 +2,63 @@
 
 {% block header %}
       
-      <main>
-        <div class="container-fluid">
-        <div class = "row">
-        <div class = "col-8">
 
-      <!--Carousel-->
-      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"  style= "padding-top: 5%; margin-left: 45%;">
-        <div class="carousel-inner">
-          <div class="carousel-item active"><a href="event_info_page.html">
-            <img src="{{ url_for('static', filename='Carousel Pic 1.jpg')}}" class="d-block w-100" alt="Concert" height="600" width="750px">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Event Name</h5>
-              <p>DD/MM/YYYY Insert tickets remaining</p>
-            </div>
-          </a></div>
-          <div class="carousel-item"><a href="event_info_page.html">
-            <img src="{{ url_for('static', filename='Carousel Pic 2.jpg')}}" class="d-block w-100" alt="Guitarist" height="600" width="750px">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Event Name</h5>
-              <p>DD/MM/YYYY Insert tickets remaining</p>
-            </div>
-          </a></div>
-          <div class="carousel-item"><a href="event_info_page.html">
-            <img src="{{ url_for('static', filename='Carousel Pic 3.jpg')}}" class="d-block w-100" alt="DJ" height="600" width="750px">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Event Name</h5>
-              <p>DD/MM/YYYY Insert tickets remaining</p>
-            </div>
-          </a></div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
 
     {% endblock %}
 
     {% block content %} 
+
+
+    <main>
+      <div class="container-fluid">
+      <div class = "row">
+      <div class = "col-lg-8">
+
+    <!--Carousel-->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"  style= "padding-top: px;">
+      <div class="carousel-inner">
+        <div class="carousel-item active"><a href="event_info_page.html">
+          <img src="{{ url_for('static', filename='Carousel Pic 1.jpg')}}" class="d-block w-100" alt="Concert" height="600" width="750px">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Event Name</h5>
+            <p>DD/MM/YYYY Insert tickets remaining</p>
+          </div>
+        </a></div>
+        <div class="carousel-item"><a href="event_info_page.html">
+          <img src="{{ url_for('static', filename='Carousel Pic 2.jpg')}}" class="d-block w-100" alt="Guitarist" height="600" width="750px">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Event Name</h5>
+            <p>DD/MM/YYYY Insert tickets remaining</p>
+          </div>
+        </a></div>
+        <div class="carousel-item"><a href="event_info_page.html">
+          <img src="{{ url_for('static', filename='Carousel Pic 3.jpg')}}" class="d-block w-100" alt="DJ" height="600" width="750px">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Event Name</h5>
+            <p>DD/MM/YYYY Insert tickets remaining</p>
+          </div>
+        </a></div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+    
+  </div>
+
+
+
+
+
     <!--Article with events-->
-      <div class = "container-fluid col-4" style="margin-left: 40%; padding-top: 5%; padding-bottom: 5%;">
+      <div class = "container-fluid col-sm-4 " style="padding-top: 10px; padding-bottom: 10px;">
         <article class="forecast"> <a href="event_info_page.html">
           <div class="card" style="width: 18rem;"> 
             <img src="{{ url_for('static', filename='Maggie Olsen.jpg')}}" class="card-img-top" alt="..." height="200">
