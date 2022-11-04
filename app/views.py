@@ -45,11 +45,22 @@ def event_info_page():
 @bp.route('/event_creation', methods=['GET', 'POST'])
 def event_creation():
 
-    if request.method == 'POST':
-        #creating an event backend here
-        pass
+    form = CreateEventForm()
+    if form.validate_on_submit():
+        event = Event(
+            eventName = form.event_name.data,
+            description = form.event_info.data,
+            eventDate = form.event_date.data,
+            ticketTypes = form.event_ticket_types.data,
+            eventStatus = form.event_status.data
+        )
 
-    return render_template('event_creation.html')
+        db.session.add(user)
+        db.session.commit()
+        flash('Created Event')
+        return redirect('/index')
+
+    return render_template('event_creation.html', title = 'EVENT_CREATION', form = form)
 
 @bp.route('/booking_history', methods=['GET', 'POST'])
 def booking_history():
