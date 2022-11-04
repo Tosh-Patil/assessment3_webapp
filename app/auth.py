@@ -40,27 +40,24 @@ def register():
 # login function
 @bp.route('/login', methods=['GET', 'POST'])
 def authenticate(): #view function
-    print('In Login View function')
-    login_form = LoginForm()
+    if current_user.is_authenticated:
+        return redirect('/index')
+    form = LoginForm()
     error=None
-    if(login_form.validate_on_submit()==True):
-        user_name = login_form.user_name.data
-        password = login_form.password.data
-        u1 = User.query.filter_by(name=user_name).first()
+    if(form.validate_on_submit()==True):
+        username = form.username.data
+        password = form.password.data
+        u1 = User.query.filter_by(username=form.username.data).first()
         if u1 is None:
             error='Incorrect user name'
-        elif not check_password_hash(u1.password_hash, password): # takes the hash and password
+        elif not check_password_hash(u1.password, password): # takes the hash and password
             error='Incorrect password'
         if error is None:
-            login_user(u1)
-            nextp = request.args.get('next') #this gives the url from where the login page was accessed
-            print(nextp)
-            if next is None or not nextp.startswith('/'):
-                return redirect(url_for('index'))
-            return redirect(nextp)
+            login_user(u1, remember=form.rememberMe.data)
+            return redirect('/index')
         else:
             flash(error)
-    return render_template('login.html', form=login_form, heading='Login')
+    return render_template('login.html', form=form, heading='Login')
 
 
 @bp.route('/logout')

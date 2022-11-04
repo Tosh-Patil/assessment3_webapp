@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask import Flask
 from flask import render_template
 from app.models import Event, Comment
+from flask_login import login_required
 
 bp = Blueprint('main', __name__, template_folder='templates')
 
@@ -51,6 +52,7 @@ def booking_history():
 
 
 @bp.route('/user', methods=['GET', 'POST'])
+@login_required
 def user():
 
     return render_template('user.html')

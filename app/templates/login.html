@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+ {% extends 'base.html' %}
 
 {% block header %}
 
@@ -8,20 +8,32 @@
 {% block content %} 
 
  <div class="col-4">
-        <form>
-        <h4>Enter Email and Password</h4>
-        <div style="padding-bottom: 20px;"></div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        
-        <button type="submit" class="btn btn-light">Login</button>
+        <form action="" method="post" novalidate>
+          {{ form.hidden_tag() }}
+          <h4>Enter Email and Password</h4>
+          <div style="padding-bottom: 20px;"></div>
+          <div class="mb-3">
+            <p>
+              {{ form.username.label }}<br>
+              {{ form.username(size=32) }}<br>
+              {% for error in form.username.errors %}
+              <span style="color:red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+          </div>
+          <div class="mb-3">
+            <p>
+              {{ form.password.label }}<br>
+              {{ form.password(size=32) }}<br>
+              {% for error in form.password.errors %}
+              <span style="color:red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+          </div>
+          <p>{{ form.rememberMe() }}  {{ form.rememberMe.label }}</p><br>
+          <p>{{ form.submit() }}</p>
       </form>
+      <p>New User? <a href="/register" style="text-decoration: none;">Click Here to Register!</a></p>
     </div>
 
 

@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 from .models import User
@@ -11,6 +11,8 @@ ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 class LoginForm(FlaskForm):
     username=StringField("Username", validators=[InputRequired('Enter username')])
     password=PasswordField("Password", validators=[InputRequired('Enter password')])
+    # Remember me button so user stays logged in
+    rememberMe = BooleanField("Remember Me")
     submit = SubmitField("Login")
 
  # this is the registration form
