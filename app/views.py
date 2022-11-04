@@ -28,9 +28,19 @@ def event_info_page():
     form.event_id.choices = choices
     
     if form.validate_on_submit:
-        event_name = form.event_id
+        event = Event.query.filter_by(eventName=form.data).first()
+        event_id = event.id
+        event_user = event.userId
+        event_name = event.eventName
+        event_date = event.eventDate
+        event_t_type = event.ticketTypes
+        event_desc = event.description
+        event_stat = event.eventStatus
+        event_comments = event.comments
+        event_orders = event.ticketOrders
 
-    return render_template('event_info_page.html', form=form, event_name=event_name)
+
+    return render_template('event_info_page.html', form=form, **locals())
 
 @bp.route('/event_creation', methods=['GET', 'POST'])
 def event_creation():
