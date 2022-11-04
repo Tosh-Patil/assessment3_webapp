@@ -1,7 +1,7 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, flash, redirect
 from flask import Flask
 from flask import render_template
-from app.models import Event, Comment, User
+from app.models import Event, Comment, User, ticketOrder
 from flask_login import login_required
 from .forms import FindEventForm, CreateEventForm
 from .auth import session
@@ -17,6 +17,14 @@ def index():
 
 
     return render_template('index.html', **locals())
+
+@bp.errorhandler(404)
+def page_not_found():
+    return render_template('404.html')
+
+@bp.errorhandler(500)
+def page_not_found():
+    return render_template('500.html')
 
 @bp.route('/event_info_page', methods=['GET', 'POST'])
 def event_info_page():
@@ -41,7 +49,7 @@ def event_info_page():
         event_orders = event.ticketOrders
 
 
-    return render_template('event_info_page.html', form=form, **locals())
+    return render_template('event_info_page.html', form=form)
 
 @bp.route('/event_creation', methods=['GET', 'POST'])
 def event_creation():
@@ -65,7 +73,18 @@ def event_creation():
 
 @bp.route('/booking_history', methods=['GET', 'POST'])
 def booking_history():
-    # tickets = ticketOrder.query.query_by(USERID)
+    event = []
+    quantity = []
+
+    if "UserID" in session:
+        tickets = ticketOrder.query.filter_by(session['UserID']).all()
+        for ticket in tickets:
+            event.append(ticket.eventId)
+            quantity.append(ticket.quantity)
+            
+    else:
+        flash('Not logged in')
+        return redirect('/login')
 
     return render_template('booking_history.html', **locals())
 

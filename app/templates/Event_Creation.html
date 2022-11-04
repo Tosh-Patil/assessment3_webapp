@@ -5,7 +5,7 @@
    <main>
 <!--Login details-->
   <div class="row align-items-start">
-    <div class="col-lg-4"> 
+    <div class="col-lg-4">
         <img src="img\Concert Venue.jpg" height="400" width="400">
     </div>
 	<form action = "" method = "post">
@@ -17,19 +17,20 @@
             <h6>Event Details</h6>
             <div class="mb-3">
               <label for="exampleInput" class="form-label">DD/MM/YYYY</label>
-              <input type="text" class="form-control" id="exampleInput" aria-describedby="textHelp">
+
             </div>
+            {{ form.event_date(size=32) }}
             <div class="mb-3">
               <label for="exampleInput" class="form-label">Event Name</label>
-              <input type="text" class="form-control" id="exampleInput" aria-describedby="textHelp">
             </div>
+            {{ form.event_name(size=32) }}
             <div class="mb-3">
               <label for="exampleInput" class="form-label">Description</label>
-              <input type="text" class="form-control" id="exampleInput" aria-describedby="textHelp">
             </div>
+            {{ form.event_description(size=32) }}
         </div>
     </div>
-    
+
 
 <!--Ticket Type Checkboxes-->
     <div class="row" style= "padding-bottom: 80px;">
@@ -48,17 +49,19 @@
           <label class="btn btn-outline-secondary" for="btn-check-4-outlined">$99 Backstage Pass</label><br>
         </div>
         <div class="mb-3">
-          <label for="exampleInput" class="form-label">Custom Ticket</label>
-          <input type="text" class="form-control" id="exampleInput" aria-describedby="textHelp">
+          <label for="exampleInput" class="form-label">Ticket Price</label>
         </div>
+          {{ form.ticket_price(size=32) }}
+
       </div>
+
     </div>
 
-   
-   
-   
-   
-  
+
+
+
+
+
 <!-- Image submission-->
 
     <div class="row align-items-start" style= "padding-bottom: 40px;">
@@ -77,11 +80,11 @@
                 <label for="exampleInputNumber1" class="form-label">Img</label>
                 <input type="phone number" class="form-control" id="exampleInputNumber1">
               </div>
-            
-            <button type="submit" class="btn btn-light">Submit All</button>
+
+            {{form.submit()}}
           </form>
         </div>
-	
+
 	</form>
 
    </main>

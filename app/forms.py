@@ -46,7 +46,7 @@ class CreateEventForm(FlaskForm):
     event_date=StringField("Event date", validators=[InputRequired('Enter date of event')])
     event_description=StringField("Description of event", validators=[InputRequired('Enter a desciption of the event')])
     ticket_price = StringField('Ticket price', validators=[InputRequired()])
-    event_img=FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'),FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
+    #event_img=FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'),FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     submit = SubmitField("Create Event")
 
 # Used to find event info for event of user's choice

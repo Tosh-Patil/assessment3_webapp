@@ -52,3 +52,4 @@ class ticketOrder(db.Model):
     eventId = db.Column(db.Integer, db.ForeignKey('event.id'),
         nullable=False)
     ticketType = db.Column(db.String(32), nullable=False)
+    quantity = db.Column(db.Integer, nullable = False)
