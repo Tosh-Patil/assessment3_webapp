@@ -1,9 +1,9 @@
 from flask import Blueprint, request
 from flask import Flask
 from flask import render_template
-from app.models import Event, Comment
+from app.models import Event, Comment, User
 from flask_login import login_required
-from .forms import FindEventForm
+from .forms import FindEventForm, CreateEventForm
 from .auth import session
  
 bp = Blueprint('main', __name__, template_folder='templates')
@@ -49,14 +49,13 @@ def event_creation():
     form = CreateEventForm()
     if form.validate_on_submit():
         event = Event(
-            userId = session['UserID']
+            userId = session['UserID'],
             eventName = form.event_name.data,
             description = form.event_info.data,
             eventDate = form.event_date.data,
             ticketTypes = form.event_ticket_types.data,
             eventStatus = form.event_status.data
         )
-
         db.session.add(user)
         db.session.commit()
         flash('Created Event')
