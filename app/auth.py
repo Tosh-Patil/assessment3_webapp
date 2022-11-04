@@ -31,7 +31,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Registered Account')
-        return redirect('/index')
+        return redirect('/login')
 
     return render_template('register.html', title='REGISTER', form=form)
 
@@ -62,7 +62,6 @@ def authenticate(): #view function
 
 
 @bp.route('/logout')
-@login_required
 def logout():
     logout_user()
-    return redirect('/index')
+    return redirect("{{ url_for('views.index') }}")

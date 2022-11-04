@@ -8,24 +8,24 @@
         <div class = "col-8">
 
       <!--Carousel-->
-      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"  style= "padding-bottom: 10px;">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"  style= "padding-top: 5%; margin-left: 45%;">
         <div class="carousel-inner">
-          <div class="carousel-item active"><a href="Event_Info_Page.html">
-            <img src="img\Carousel Pic 1.jpg" class="d-block w-100" alt="Concert" height="600">
+          <div class="carousel-item active"><a href="event_info_page.html">
+            <img src="{{ url_for('static', filename='Carousel Pic 1.jpg')}}" class="d-block w-100" alt="Concert" height="600" width="750px">
             <div class="carousel-caption d-none d-md-block">
               <h5>Event Name</h5>
               <p>DD/MM/YYYY Insert tickets remaining</p>
             </div>
           </a></div>
-          <div class="carousel-item"><a href="Event_Info_Page.html">
-            <img src="img\Carousel Pic 2.jpg" class="d-block w-100" alt="Guitarist" height="600">
+          <div class="carousel-item"><a href="event_info_page.html">
+            <img src="{{ url_for('static', filename='Carousel Pic 2.jpg')}}" class="d-block w-100" alt="Guitarist" height="600" width="750px">
             <div class="carousel-caption d-none d-md-block">
               <h5>Event Name</h5>
               <p>DD/MM/YYYY Insert tickets remaining</p>
             </div>
           </a></div>
-          <div class="carousel-item"><a href="Event_Info_Page.html">
-            <img src="img\Carousel Pic 3.jpg" class="d-block w-100" alt="DJ" height="600">
+          <div class="carousel-item"><a href="event_info_page.html">
+            <img src="{{ url_for('static', filename='Carousel Pic 3.jpg')}}" class="d-block w-100" alt="DJ" height="600" width="750px">
             <div class="carousel-caption d-none d-md-block">
               <h5>Event Name</h5>
               <p>DD/MM/YYYY Insert tickets remaining</p>
@@ -47,28 +47,28 @@
 
     {% block content %} 
     <!--Article with events-->
-      <div class = "container-fluid col-4">
-        <article class="forecast"> <a href="Event_Info_Page.html">
+      <div class = "container-fluid col-4" style="margin-left: 40%; padding-top: 5%; padding-bottom: 5%;">
+        <article class="forecast"> <a href="event_info_page.html">
           <div class="card" style="width: 18rem;"> 
-            <img src="img\Maggie Olsen.jpg" class="card-img-top" alt="..." height="200">
+            <img src="{{ url_for('static', filename='Maggie Olsen.jpg')}}" class="card-img-top" alt="..." height="200">
             <div class="card-img-overlay" style = "color:white">
               <h6 class="card-text" >Maggie Olsen Nov 24th</h6>
               <p>Booked</p>
             </div>
           </div></a>
           </article>
-          <article class="day-forecast"> <a href="Event_Info_Page.html">
+          <article class="day-forecast"> <a href="event_info_page.html">
             <div class="card" style="width: 18rem;">
-              <img src="img\Jimmy Young.jpg" class="card-img-top" alt="..." height="200">
+              <img src="{{ url_for('static', filename='Jimmy Young.jpg')}}" class="card-img-top" alt="..." height="200">
               <div class="card-img-overlay" style = "color:white">
                 <h6 class="card-text">Jimmy Young Dec 1st</h6>
                 <p>Upcoming</p>
               </div>
             </div></a>
           </article>
-          <article class="day-forecast"> <a href="Event_Info_Page.html">
+          <article class="day-forecast"> <a href="event_info_page.html">
             <div class="card" style="width: 18rem;">
-              <img src="img\Ivan Right.jpg" class="card-img-top" alt="..." height="200">
+              <img src="{{ url_for('static', filename='Ivan Right.jpg')}}" class="card-img-top" alt="..." height="200">
               <div class="card-img-overlay" style = "color:white">
                 <h6 class="card-text">Ivan Right Dec 10th</h6>
                 <p>Upcoming</p>
