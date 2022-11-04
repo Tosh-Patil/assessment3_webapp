@@ -4,6 +4,7 @@ from flask import render_template
 from app.models import Event, Comment
 from flask_login import login_required
 from .forms import FindEventForm
+from .auth import session
  
 bp = Blueprint('main', __name__, template_folder='templates')
 
