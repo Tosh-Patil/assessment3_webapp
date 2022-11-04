@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #a8a5a5" >
       <div class="container-fluid">
         <a class="navbar-brand" href="/index">
-          <img src="/img/Nav Thumbnail.jpg" alt="Nav Thumbnail" width="60" height="48">
+          <img src="{{ url_for('static', filename='Nav Thumbnail.jpg')}}" alt="Nav Thumbnail" width="60" height="48">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
           <span class="navbar-toggler-icon" ></span>
@@ -67,7 +67,7 @@
         <div class="container-fluid">
         <div class = "row">
             <div class="card text-bg-dark">
-            <img src="img\Footer Pic.jpg" class="card-img" alt="..." height="250" >
+            <img src="{{ url_for('static', filename='Footer Pic.jpg')}}" class="card-img" alt="..." height="250">
             <div class="card-img-overlay" style="color:white">
                 <h5 class="card-title">About</h5>
                 <p class="card-text"><li>

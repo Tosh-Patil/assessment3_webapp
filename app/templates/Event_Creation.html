@@ -3,37 +3,33 @@
 {% import "bootstrap/form.html" as wtf %}
 {% block content %}
    <main>
-<!--Login details-->
+<!--Generic event picture-->
+<!--First row, picture and event details-->
   <div class="row align-items-start">
-    <div class="col-lg-4">
-        <img src="img\Concert Venue.jpg" height="400" width="400">
+    <div class="col-md-4">
+        <img src="{{ url_for('static', filename='Open sign.jpg')}}" height="400" width="400">
     </div>
+    <!--Event Details-->
+    <div class="col-md-4" style="padding-top:20px;">
+      <h6>Event Details</h6>
+      <div class="mb-3">
+        <label for="exampleInput" class="form-label">DD/MM/YYYY</label>
+
+      </div>
+      {{ form.event_date(size=32) }}
+      <div class="mb-3">
+        <label for="exampleInput" class="form-label">Event Name</label>
+      </div>
+      {{ form.event_name(size=32) }}
+      <div class="mb-3">
+        <label for="exampleInput" class="form-label">Description</label>
+      </div>
+      {{ form.event_description(size=32) }}
+  </div>
 	<form action = "" method = "post">
 
-    </div>
-<!--Event Details-->
-    <div class="row" style= "padding-bottom: 20px;">
-        <div class="col-md-4 offset-md-4">
-            <h6>Event Details</h6>
-            <div class="mb-3">
-              <label for="exampleInput" class="form-label">DD/MM/YYYY</label>
-
-            </div>
-            {{ form.event_date(size=32) }}
-            <div class="mb-3">
-              <label for="exampleInput" class="form-label">Event Name</label>
-            </div>
-            {{ form.event_name(size=32) }}
-            <div class="mb-3">
-              <label for="exampleInput" class="form-label">Description</label>
-            </div>
-            {{ form.event_description(size=32) }}
-        </div>
-    </div>
-
-
 <!--Ticket Type Checkboxes-->
-    <div class="row" style= "padding-bottom: 80px;">
+    <div class="row" style= "padding-bottom: 40px;">
       <div class="col-md-4 offset-md-4">
         <h6>Types of tickets available</h6>
         <div style="padding-bottom: 5px;">
