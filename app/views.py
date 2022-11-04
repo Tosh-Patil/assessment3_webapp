@@ -48,6 +48,7 @@ def event_creation():
     form = CreateEventForm()
     if form.validate_on_submit():
         event = Event(
+            userId = session['UserID']
             eventName = form.event_name.data,
             description = form.event_info.data,
             eventDate = form.event_date.data,
