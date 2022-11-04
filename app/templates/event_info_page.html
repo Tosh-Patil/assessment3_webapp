@@ -26,6 +26,18 @@
     <!--Event Text-->
       <div class="col-md-6"">
         <!--Headline-->
+
+        <form action="" method="post">
+          {{ form.hidden_tag() }}
+            <h4>Find Event Details</h4>
+            <div style="padding-bottom: 20px;"></div>
+            <div class="mb-3">
+              <p>
+                {{ form.event_id.label }}<br>
+              </p>
+            </div>
+            <p>{{ form.submit() }}</p>
+
         <h1>Maggie Olsen Perfoming November 24th</h1>
         <button type="button" class="btn btn-light" style="--bs-btn-padding-y: .60rem; --bs-btn-padding-x: .20rem; --bs-btn-font-size: 1.4rem;">Book Tickets Here!</button>
 

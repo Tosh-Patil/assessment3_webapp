@@ -3,7 +3,8 @@ from flask import Flask
 from flask import render_template
 from app.models import Event, Comment
 from flask_login import login_required
-
+from .forms import FindEventForm
+ 
 bp = Blueprint('main', __name__, template_folder='templates')
 
 
@@ -16,24 +17,20 @@ def index():
 
     return render_template('index.html', **locals())
 
-@bp.route('/event_info', methods=['GET', 'POST'])
-def event_info(event_id):
+@bp.route('/event_info_page', methods=['GET', 'POST'])
+def event_info_page():
+    
+    def get_choices():
+        return Event.query.order_by(Event.eventName)
 
-    event = Event.query.get(event_id)
-    event_name = Event.eventName
-    event_info = Event.description
-    event_date = Event.eventDate
-    event_ticket_types = Event.ticketTypes
-    event_status = Event.eventStatus
+    form = FindEventForm()
+    choices = get_choices
+    form.event_id.choices = choices
+    
+    if form.validate_on_submit:
+        event_name = form.event_id
 
-    comments = Comment.query.filter_by(eventId = event_id).all()
-
-    if request.method == 'POST':
-        #Booking tickets backend here
-        pass
-
-    return render_template('event_info_page.html', event=event, event_name=event_name, event_info=event_info, event_date=event_date, 
-    event_ticket_types=event_ticket_types, event_status=event_status, **locals())
+    return render_template('event_info_page.html', form=form, event_name=event_name)
 
 @bp.route('/event_creation', methods=['GET', 'POST'])
 def event_creation():

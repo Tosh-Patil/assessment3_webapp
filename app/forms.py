@@ -1,9 +1,10 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, BooleanField
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, BooleanField, SelectField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileRequired, FileField, FileAllowed
-from .models import User
+from .models import User, Event
+from . import db
 
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
@@ -47,3 +48,9 @@ class CreateEventForm(FlaskForm):
     ticket_price = StringField('Ticket price', validators=[InputRequired()])
     event_img=FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'),FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     submit = SubmitField("Create Event")
+
+# Used to find event info for event of user's choice
+class FindEventForm(FlaskForm):
+    event_id = SelectField('Event', choices=[])
+    submit = SubmitField("Find Event Details")
+
