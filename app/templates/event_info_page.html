@@ -6,20 +6,20 @@
    <main>
   <div class="row"> 
     <div class="col-md-4">
-      <img src="img\Maggie Olsen.jpg" width="400">
+      <img src="{{ url_for('static', filename='Maggie Olsen.jpg')}}" width="400">
       <!--Other pictures in table-->
       <table>
         <tr>
-          <td><img src="img\Piano and hands.jpg" width="200" height="200"></td>
-          <td><img src="img\Trumpets.jpg" width="200" height="200"></td>
+          <td><img src="{{ url_for('static', filename='Piano and hands.jpg')}}" width="200" height="200"></td>
+          <td><img src="{{ url_for('static', filename='Trumpets.jpg')}}" width="200" height="200"></td>
         </tr>
         <tr>
-          <td><img src="img\Soundboard.jpg" width="200" height="200"></td>
-          <td><img src="img\Microphone.jpg" width="200" height="200"></td>
+          <td><img src="{{ url_for('static', filename='Soundboard.jpg')}}" width="200" height="200"></td>
+          <td><img src="{{ url_for('static', filename='Microphone.jpg')}}" width="200" height="200"></td>
         </tr>
         <tr>
-          <td><img src="img\Marshall speaker.jpg" width="200" height="200"></td>
-          <td><img src="img\Open sign.jpg" width="200" height="200"></td>
+          <td><img src="{{ url_for('static', filename='Marshall speaker.jpg')}}" width="200" height="200"></td>
+          <td><img src="{{ url_for('static', filename='Open sign.jpg')}}g" width="200" height="200"></td>
         </tr>
       </table> 
     </div>
@@ -81,13 +81,13 @@
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="img\Comment 1.png" class="d-block w-100" alt="..." height="200">
+          <img src="{{ url_for('static', filename='Comment 1.png')}}" class="d-block w-100" alt="..." height="200">
         </div>
         <div class="carousel-item">
-          <img src="img\Comment 2.png" class="d-block w-100" alt="..." height="200">
+          <img src="{{ url_for('static', filename='Comment 2.png')}}" class="d-block w-100" alt="..." height="200">
         </div>
         <div class="carousel-item">
-          <img src="img\Comment 3.png" class="d-block w-100" alt="..." height="200">
+          <img src="{{ url_for('static', filename='Comment 3.png')}}" class="d-block w-100" alt="..." height="200">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

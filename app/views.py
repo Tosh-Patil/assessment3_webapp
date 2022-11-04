@@ -64,7 +64,8 @@ def event_creation():
             ticketTypes = form.event_ticket_types.data,
             eventStatus = form.event_status.data
         )
-        db.session.add(user)
+        
+        db.session.add(event)
         db.session.commit()
         flash('Created Event')
         return redirect('/index')
