@@ -81,7 +81,7 @@ def booking_history():
         for ticket in tickets:
             event.append(ticket.eventId)
             quantity.append(ticket.quantity)
-            
+
     else:
         flash('Not logged in')
         return redirect('/login')
