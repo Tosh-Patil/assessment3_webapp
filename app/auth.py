@@ -1,5 +1,5 @@
 from flask import ( 
-    Blueprint, flash, render_template, request, url_for, redirect
+    Blueprint, flash, render_template, request, url_for, redirect, session
 ) 
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
@@ -54,6 +54,7 @@ def authenticate(): #view function
             error='Incorrect password'
         if error is None:
             login_user(u1, remember=form.rememberMe.data)
+            session['UserID'] = u1.id
             return redirect('/index')
         else:
             flash(error)
