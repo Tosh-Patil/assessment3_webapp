@@ -71,6 +71,8 @@ def event_creation():
         return redirect('/index')
     return render_template('event_creation.html', title = 'EVENT_CREATION', form=form)
 
+
+
 @bp.route('/booking_history', methods=['GET', 'POST'])
 def booking_history():
     event = []
@@ -94,3 +96,8 @@ def booking_history():
 def user():
 
     return render_template('user.html')
+
+@bp.route('/my_events', methods=['GET', 'POST'])
+def my_events():
+    myName = User.query.filter_by(id=current_user.id)
+    return render_template("my_events.html", myName=myName)
