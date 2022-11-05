@@ -1,10 +1,10 @@
-from flask import Blueprint, request, flash, redirect
+from flask import Blueprint, request, flash, redirect, render_template
 from flask import Flask
-from flask import render_template
 from app.models import Event, Comment, User, ticketOrder
-from flask_login import login_required
+from flask_login import login_required, current_user
 from .forms import FindEventForm, CreateEventForm
 from .auth import session
+from . import db
  
 bp = Blueprint('main', __name__, template_folder='templates')
 
@@ -53,24 +53,26 @@ def event_info_page():
 
 @bp.route('/event_creation', methods=['GET', 'POST'])
 def event_creation():
-
     form = CreateEventForm()
     if form.validate_on_submit():
+        file = request.files['file']
         event = Event(
-            userId = session['UserID'],
+            creatorUserId = session['UserID'],
             eventName = form.event_name.data,
-            description = form.event_info.data,
             eventDate = form.event_date.data,
-            ticketTypes = form.event_ticket_types.data,
-            eventStatus = form.event_status.data
+            eventTime = form.event_time.data,
+            description = form.event_description.data,
+            ticketPrice = form.ticket_price.data,
+            numberOfTickets = form.number_of_tickets.data,
+            eventStatus = form.event_status.data,
+            eventImg = file.read()
         )
-        
         db.session.add(event)
         db.session.commit()
-        flash('Created Event')
         return redirect('/index')
+    return render_template('event_creation.html', title = 'EVENT_CREATION', form=form)
 
-    return render_template('event_creation.html', title = 'EVENT_CREATION', form = form)
+
 
 @bp.route('/booking_history', methods=['GET', 'POST'])
 def booking_history():
@@ -95,3 +97,8 @@ def booking_history():
 def user():
 
     return render_template('user.html')
+
+@bp.route('/my_events', methods=['GET', 'POST'])
+def my_events():
+    myName = User.query.filter_by(id=current_user.id)
+    return render_template("my_events.html", myName=myName)

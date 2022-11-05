@@ -1,12 +1,12 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, BooleanField, SelectField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, BooleanField, SelectField, TimeField, IntegerField
+from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 from .models import User, Event
 from . import db
 
-ALLOWED_FILE = {'PNG','JPG','png','jpg'}
+ALLOWED_FILE = {'.PNG','.JPG','.png','.jpg'}
 
 #creates the login information
 class LoginForm(FlaskForm):
@@ -44,9 +44,12 @@ class RegisterForm(FlaskForm):
 class CreateEventForm(FlaskForm):
     event_name=StringField("Event Name", validators=[InputRequired('Enter event name')])
     event_date=StringField("Event date", validators=[InputRequired('Enter date of event')])
+    event_time=StringField("Start at:", validators=[InputRequired('Enter time of event')])
     event_description=StringField("Description of event", validators=[InputRequired('Enter a desciption of the event')])
     ticket_price = StringField('Ticket price', validators=[InputRequired()])
-    #event_img=FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'),FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
+    number_of_tickets = IntegerField('Number of tickets availiable', validators=[NumberRange(min=0, max=10000)])
+    event_status = SelectField("Event Status", choices=(("open", "Open"), ("closed","Closed"), ("sold out", "Sold Out"), ("cancelled", "Cancelled"), ("unpublished", "Unpublished")))
+    # event_img=FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'),FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     submit = SubmitField("Create Event")
 
 # Used to find event info for event of user's choice
