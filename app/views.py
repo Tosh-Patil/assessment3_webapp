@@ -53,23 +53,27 @@ def event_info_page():
 
 @bp.route('/event_creation', methods=['GET', 'POST'])
 def event_creation():
-    form = CreateEventForm()
-    if form.validate_on_submit():
-        file = request.files['file']
-        event = Event(
-            creatorUserId = session['UserID'],
-            eventName = form.event_name.data,
-            eventDate = form.event_date.data,
-            eventTime = form.event_time.data,
-            description = form.event_description.data,
-            ticketPrice = form.ticket_price.data,
-            numberOfTickets = form.number_of_tickets.data,
-            eventStatus = form.event_status.data,
-            eventImg = file.read()
-        )
-        db.session.add(event)
-        db.session.commit()
-        return redirect('/index')
+    if current_user.is_authenticated:
+        form = CreateEventForm()
+        if form.validate_on_submit():
+            file = request.files['file']
+            event = Event(
+                creatorUserId = session['UserID'],
+                eventName = form.event_name.data,
+                eventDate = form.event_date.data,
+                eventTime = form.event_time.data,
+                description = form.event_description.data,
+                ticketPrice = form.ticket_price.data,
+                numberOfTickets = form.number_of_tickets.data,
+                eventStatus = form.event_status.data,
+                eventImg = file.read()
+            )
+            db.session.add(event)
+            db.session.commit()
+            return redirect('/index')
+    else:
+        flash('Not logged in')
+        return redirect('/login')
     return render_template('event_creation.html', title = 'EVENT_CREATION', form=form)
 
 
@@ -100,5 +104,10 @@ def user():
 
 @bp.route('/my_events', methods=['GET', 'POST'])
 def my_events():
-    myName = User.query.filter_by(id=current_user.id)
-    return render_template("my_events.html", myName=myName)
+    if current_user.is_authenticated:
+        myName = User.query.filter_by(id=current_user.id)
+        myEvent = Event.query.filter_by(creatorUserId=current_user.id).all()
+    else:
+        flash('Not logged in')
+        return redirect('/login')
+    return render_template("my_events.html", myName=myName, myEvent=myEvent)
