@@ -5,10 +5,22 @@
 
 {% block content %} 
 
-<ul>
+<ul style="list-style-type: none; font-size: 32px; padding-top: 5px;">
   {% for item in myName %}
-        <li>{{ item.username }}'s Events</li>
+        <li>{{ item.username }}'s Events</li><br>
 {% endfor %}
 </ul>
-
+<div>
+<ul style="list-style-type: none;">
+  {% for item in myEvent %}
+        <a href="/index" style="text-decoration: none; color:white">
+        <li>Name: {{ item.eventName }} &nbsp;&nbsp;  At: {{ item.eventTime }}&nbsp;&nbsp; On: {{ item.eventDate }}</li>
+        <li>Description: {{ item.description }}</li>
+        <li>Tickets Left: {{ item.numberOfTickets }}</li>
+        <li>Status: {{ item.eventStatus }}</li>
+      </a>
+        <br><br><hr><br><br>
+  {% endfor %}
+</ul>
+</div>
 {% endblock %}
