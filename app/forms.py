@@ -47,8 +47,8 @@ class CreateEventForm(FlaskForm):
     event_time=StringField("Start at:", validators=[InputRequired('Enter time of event')])
     event_description=StringField("Description of event", validators=[InputRequired('Enter a desciption of the event')])
     ticket_price = StringField('Ticket price', validators=[InputRequired()])
-    number_of_tickets = IntegerField('Number of tickets availiable', validators=[NumberRange(min=0, max=10000)])
-    event_status = SelectField("Event Status", choices=(("open", "Open"), ("closed","Closed"), ("sold out", "Sold Out"), ("cancelled", "Cancelled"), ("unpublished", "Unpublished")))
+    number_of_tickets = IntegerField('Number of tickets availiable', validators=[NumberRange(min=0, max=100000)])
+    event_status = SelectField("Event Status", choices=(("Open", "Open"), ("Closed","Closed"), ("Sold out", "Sold Out"), ("Cancelled", "Cancelled"), ("Unpublished", "Unpublished")))
     # event_img=FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'),FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     submit = SubmitField("Create Event")
 
@@ -57,3 +57,6 @@ class FindEventForm(FlaskForm):
     event_id = SelectField('Event', choices=[])
     submit = SubmitField("Find Event Details")
 
+class BuyTicket(FlaskForm):
+    ticket_amount = IntegerField("Amount of tickets", default=1, validators=[NumberRange(min=0)])
+    submit = SubmitField("Buy Tickets")

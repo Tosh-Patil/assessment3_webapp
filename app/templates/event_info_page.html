@@ -24,53 +24,30 @@
       </table> 
     </div>
     <!--Event Text-->
-      <div class="col-md-6"">
+      <div class="col-md-6" style="padding-top: 20px;">
         <!--Headline-->
-
-        <form action="" method="post">
-          {{ form.hidden_tag() }}
-            <h4>Find Event Details</h4>
-            <div style="padding-bottom: 20px;"></div>
-            <div class="mb-3">
-              <p>
-                {{ form.event_id.label }}<br>
-              </p>
-            </div>
-            <p>{{ form.submit() }}</p>
-
-        <h1>Maggie Olsen Perfoming November 24th</h1>
-        <button type="button" class="btn btn-light" style="--bs-btn-padding-y: .60rem; --bs-btn-padding-x: .20rem; --bs-btn-font-size: 1.4rem;">Book Tickets Here!</button>
-
-        <!--Generic Text-->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum ipsum quis nisi vulputate, eu gravida augue ultrices. In sagittis 
-          nulla vitae efficitur pulvinar. Cras maximus magna non viverra ultrices. Maecenas nec odio enim. Donec aliquet odio vitae urna cursus, vitae 
-          lacinia ex pharetra. Morbi arcu elit, euismod ac purus non, dignissim gravida felis. Nunc laoreet enim eu viverra facilisis. In rutrum dui vel 
-          sapien rhoncus rhoncus non vel est. Duis pulvinar, purus non fermentum auctor, odio velit commodo lectus, id tincidunt erat nisl ac ante. Proin 
-          hendrerit sodales odio in consequat. Nullam a nisi id felis luctus egestas in ut ex. Nulla eu interdum ante. Donec commodo, metus quis pharetra 
-          commodo, lectus risus auctor sem, sed sagittis leo enim non purus. Curabitur fringilla at neque eget placerat. Cras porttitor at mauris a condimentum.</p>
-        <p>Pellentesque venenatis sapien pharetra, suscipit quam eget, tempus lorem. Curabitur ultricies ultricies dignissim. Aliquam erat volutpat. Aenean tempor 
-          sem ut sapien vehicula porttitor. Morbi vestibulum iaculis pellentesque. Vestibulum ante odio, finibus a arcu at, faucibus hendrerit metus. Mauris accumsan
-           quis nunc venenatis viverra. Duis aliquam lorem non nisl vulputate pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia 
-           curae;
-
-          Maecenas pharetra nulla varius dolor eleifend hendrerit. Sed iaculis dolor quam, vitae lacinia erat accumsan id. In a nunc dictum massa tristique vestibulum. 
-          Nullam ultricies eros nulla, sit amet commodo arcu cursus in. Etiam faucibus pretium neque vel pulvinar. In cursus eros a vulputate facilisis. In et ipsum ipsum. 
-          Mauris maximus, neque vel tristique commodo, erat ante gravida velit, sit amet tincidunt erat quam eu magna. Vestibulum vel mauris dui. Proin dictum lorem placerat
-           quam dictum, dictum bibendum elit mattis.
-          
-          Curabitur a erat gravida, fringilla elit at, luctus nunc. Morbi dapibus, risus varius rutrum tincidunt, sapien felis pellentesque odio, et ultricies eros tortor a 
-          dolor. Maecenas hendrerit cursus elit, tincidunt placerat metus dictum vestibulum. Mauris tempor pulvinar elementum. Fusce gravida sit amet nunc ac pulvinar. Cras 
-          venenatis sem diam, luctus consectetur ipsum mollis molestie. Vivamus egestas gravida facilisis. Nulla gravida, ante sed posuere semper, erat odio ultricies metus, 
-          sit amet condimentum lacus felis aliquet arcu.
-          
-          Etiam in nulla risus. Duis sed commodo mi. Mauris viverra vehicula odio. Etiam sit amet diam tincidunt, cursus ante id, tincidunt lorem. Aliquam facilisis lectus ut
-           nisl suscipit convallis. Sed eu gravida turpis. Pellentesque porttitor placerat leo in consectetur. Sed pretium mi id turpis imperdiet, ac ornare neque pretium. Nunc 
-           sit amet est placerat tortor sodales tincidunt at sit amet turpis. Phasellus aliquet tellus arcu, et euismod odio maximus non.
-          
-          Sed at facilisis nulla. Nullam nec tempor diam. Sed sed magna sit amet purus pretium elementum. Integer vel urna porta, tincidunt sapien eu, rutrum felis.
-           Proin maximus mauris nec magna efficitur, aliquam viverra sem cursus. Cras auctor aliquet nulla, at congue nisl sodales sit amet. Donec fermentum facilisis
-            turpis non consectetur. Morbi fermentum mollis nisi, volutpat fringilla lacus vulputate ac. Suspendisse scelerisque nisl id est egestas bibendum. Suspendisse 
-            tincidunt fermentum cursus. Phasellus quis rhoncus nisl. Sed molestie neque dolor, ac tincidunt arcu maximus nec. Integer feugiat efficitur metus sed efficitur.</p>
+            {% for item in chosenEvent %}
+              <h1 style="font-weight: bold ;">{{ item.eventName }} Is Happening {{ item.eventDate }} At {{ item.eventTime }}</h1>
+              <h4>Status: {{ item.eventStatus }}</h2><br><hr><br><br>
+              <p>{{ item.description }}</p><br><hr><br><br>
+              <h3>Price : {{ item.ticketPrice }}</h3>
+              <p>Tickets Remaining: {{ item.numberOfTickets }}</p>
+            {% endfor %}
+              <form action="" method="post">
+                  {{ form.hidden_tag() }}
+                  <label for="exampleInput" class="form-label">Purchase Amount</label><br>
+                    <p>
+                    {{ form.ticket_amount(size=32) }}
+                    {% for error in form.ticket_amount.errors %}
+                    <span style="color:red;">[{{ error }}]</span>
+                    {% endfor %}
+                  </p>
+                  <div style="padding-bottom: 10px ;">
+                    <label for="exampleInput" class="form-label">Buy Tickets</label><br>
+                    {{form.submit()}}
+                  </div>
+              </form>
+            <!--Generic Text-->
       </div>
   </div>
 

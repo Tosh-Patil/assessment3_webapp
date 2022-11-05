@@ -2,9 +2,10 @@ from flask import Blueprint, request, flash, redirect, render_template
 from flask import Flask
 from app.models import Event, Comment, User, ticketOrder
 from flask_login import login_required, current_user
-from .forms import FindEventForm, CreateEventForm
+from .forms import FindEventForm, CreateEventForm, BuyTicket
 from .auth import session
 from . import db
+from sqlalchemy.orm.attributes import flag_modified
  
 bp = Blueprint('main', __name__, template_folder='templates')
 
@@ -28,7 +29,6 @@ def page_not_found():
 
 @bp.route('/event_info_page', methods=['GET', 'POST'])
 def event_info_page():
-    
     def get_choices():
         return Event.query.order_by(Event.eventName)
 
@@ -108,9 +108,14 @@ def my_events():
 
 @bp.route('/event/<int:eventId>', methods=['GET', 'POST'])
 def event(eventId):
-    if eventId < 3:
-        print(eventId)
-        return f'Win'
-    else:
-        print(eventId)
-        return f'Loser'
+    form=BuyTicket()
+    chosenEvent = Event.query.filter_by(id=eventId)
+
+    if form.validate_on_submit():
+        amountOfTicketsPurchases = form.ticket_amount.data
+        # currentTicketNumber = Event.query.filter(Event.numberOfTickets)
+        #new_ticket_number = currentTicketNumber - amountOfTicketsPurchases
+
+        #chosenEvent.numberOfTickets = request.form[new_ticket_number]
+        #db.session.commit()
+    return render_template("event_info_page.html", chosenEvent=chosenEvent, form=form)
