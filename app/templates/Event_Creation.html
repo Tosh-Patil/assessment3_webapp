@@ -24,7 +24,7 @@
       <div class="mb-3">
         <label for="exampleInput" class="form-label">DD/MM/YYYY</label><br>
         {{ form.event_date(size=32) }}
-        {% for error in form.event_data.errors %}
+        {% for error in form.event_date.errors %}
         <span style="color:red;">[{{ error }}]</span>
         {% endfor %}
       </div>
