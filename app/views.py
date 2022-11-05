@@ -111,3 +111,13 @@ def my_events():
         flash('Not logged in')
         return redirect('/login')
     return render_template("my_events.html", myName=myName, myEvent=myEvent)
+
+
+@bp.route('/event/<int:eventId>', methods=['GET', 'POST'])
+def event(eventId):
+    if eventId < 3:
+        print(eventId)
+        return f'Win'
+    else:
+        print(eventId)
+        return f'Loser'

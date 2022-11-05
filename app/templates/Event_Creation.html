@@ -17,30 +17,51 @@
       <div class="mb-3">
         <label for="exampleInput" class="form-label">Event Name</label><br>
         {{ form.event_name(size=32) }}
+        {% for error in form.event_name.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+        {% endfor %}
       </div>
       <div class="mb-3">
         <label for="exampleInput" class="form-label">DD/MM/YYYY</label><br>
         {{ form.event_date(size=32) }}
+        {% for error in form.event_data.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+        {% endfor %}
       </div>
       <div class="mb-3">
         <label for="exampleInput" class="form-label">Event Start Time</label><br>
         {{ form.event_time(size=32) }}
+        {% for error in form.event_time.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+        {% endfor %}
       </div>
       <div class="mb-3">
         <label for="exampleInput" class="form-label">Description</label><br>
         {{ form.event_description(size=32) }}
+        {% for error in form.event_description.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+        {% endfor %}
       </div>
       <div class="mb-3">
         <label for="exampleInput" class="form-label">Event Status</label><br>
         {{ form.event_status(size=6) }}
+        {% for error in form.event_status.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+        {% endfor %}
       </div>
       <div class="mb-3">
         <label for="exampleInput" class="form-label">Ticket Price</label><br>
         {{ form.ticket_price(size=32) }}
+        {% for error in form.ticket_price.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+        {% endfor %}
       </div>
       <div class="mb-3">
         <label for="exampleInput" class="form-label">Number of Tickets Availiable</label><br>
         {{ form.number_of_tickets(size=32) }}
+        {% for error in form.number_of_tickets.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+        {% endfor %}
       </div>
       <div class="mb-3">
         <label for="exampleInput" class="form-label">Upload Event Image</label><br>
