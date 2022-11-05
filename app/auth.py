@@ -19,6 +19,7 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         pwd_hash = generate_password_hash(form.password.data)
+        # Add new user to database
         user = User(
             username=form.username.data,
             email=form.email.data,
@@ -42,7 +43,6 @@ def authenticate(): #view function
     form = LoginForm()
     error=None
     if(form.validate_on_submit()==True):
-        username = form.username.data
         password = form.password.data
         u1 = User.query.filter_by(username=form.username.data).first()
         if u1 is None:
@@ -58,6 +58,7 @@ def authenticate(): #view function
     return render_template('login.html', form=form, heading='Login')
 
 
+# Log user out and return them to the home page
 @bp.route('/logout')
 def logout():
     logout_user()

@@ -1,65 +1,55 @@
 {% extends 'base.html' %}
 
 {% block header %}
-      
+{% endblock %}
+
+{% block content %} 
 
 
-    {% endblock %}
-
-    {% block content %} 
-
-
-    <main>
-      <div class="container-fluid">
-      <div class = "row">
+<main>
+  <div class="container-fluid">
+    <div class = "row">
       <div class = "col-lg-8">
 
-    <!--Carousel-->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"  style= "padding-top: 10px;">
-      <div class="carousel-inner">
-        <div class="carousel-item active"><a href="event_info_page.html">
-          <img src="{{ url_for('static', filename='Carousel Pic 1.jpg')}}" class="d-block w-100" alt="Concert" height="600" width="750px">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Event Name</h5>
-            <p>DD/MM/YYYY Insert tickets remaining</p>
+        <!--Carousel-->
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"  style= "padding-top: 10px;">
+          <div class="carousel-inner">
+            <div class="carousel-item active"><a href="/index">
+              <img src="{{ url_for('static', filename='Carousel Pic 1.jpg')}}" class="d-block w-100" alt="Concert" height="600" width="750px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Event Name</h5>
+                <p>DD/MM/YYYY Insert tickets remaining</p>
+              </div>
+            </a></div>
+            <div class="carousel-item"><a href="/index">
+              <img src="{{ url_for('static', filename='Carousel Pic 2.jpg')}}" class="d-block w-100" alt="Guitarist" height="600" width="750px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Event Name</h5>
+                <p>DD/MM/YYYY Insert tickets remaining</p>
+              </div>
+            </a></div>
+            <div class="carousel-item"><a href="/index">
+              <img src="{{ url_for('static', filename='Carousel Pic 3.jpg')}}" class="d-block w-100" alt="DJ" height="600" width="750px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Event Name</h5>
+                <p>DD/MM/YYYY Insert tickets remaining</p>
+              </div>
+            </a></div>
           </div>
-        </a></div>
-        <div class="carousel-item"><a href="event_info_page.html">
-          <img src="{{ url_for('static', filename='Carousel Pic 2.jpg')}}" class="d-block w-100" alt="Guitarist" height="600" width="750px">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Event Name</h5>
-            <p>DD/MM/YYYY Insert tickets remaining</p>
-          </div>
-        </a></div>
-        <div class="carousel-item"><a href="event_info_page.html">
-          <img src="{{ url_for('static', filename='Carousel Pic 3.jpg')}}" class="d-block w-100" alt="DJ" height="600" width="750px">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Event Name</h5>
-            <p>DD/MM/YYYY Insert tickets remaining</p>
-          </div>
-        </a></div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-
-
-    
-  </div>
-
-
-
-
 
     <!--Article with events-->
       <div class = "container-fluid col-sm-4 " style="padding-top: 10px; padding-bottom: 10px;">
-        <article class="forecast"> <a href="event_info_page.html">
+        <article class="forecast"> <a href = "/index">
           <div class="card" style="width: 18rem;"> 
             <img src="{{ url_for('static', filename='Maggie Olsen.jpg')}}" class="card-img-top" alt="..." height="200">
             <div class="card-img-overlay" style = "color:white">
@@ -67,17 +57,17 @@
               <p>Booked</p>
             </div>
           </div></a>
-          </article>
-          <article class="day-forecast"> <a href="event_info_page.html">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ url_for('static', filename='Jimmy Young.jpg')}}" class="card-img-top" alt="..." height="200">
-              <div class="card-img-overlay" style = "color:white">
-                <h6 class="card-text">Jimmy Young Dec 1st</h6>
-                <p>Upcoming</p>
-              </div>
-            </div></a>
-          </article>
-          <article class="day-forecast"> <a href="event_info_page.html">
+        </article>
+        <article class="day-forecast"> <a href="/index">
+          <div class="card" style="width: 18rem;">
+            <img src="{{ url_for('static', filename='Jimmy Young.jpg')}}" class="card-img-top" alt="..." height="200">
+            <div class="card-img-overlay" style = "color:white">
+              <h6 class="card-text">Jimmy Young Dec 1st</h6>
+              <p>Upcoming</p>
+            </div>
+          </div></a>
+        </article>
+          <article class="day-forecast"> <a href="/index">
             <div class="card" style="width: 18rem;">
               <img src="{{ url_for('static', filename='Ivan Right.jpg')}}" class="card-img-top" alt="..." height="200">
               <div class="card-img-overlay" style = "color:white">
@@ -86,11 +76,23 @@
               </div>
             </div></a>
           </article>
-      </article>
-      </div>
-      
-      
+        </article>
     </div>
+  </div>
 </div>
+<!-- Display all events currently in the database -->
+<h3>All Upcoming Events</h3><hr><br><br>
+<div>
+  <ul style="list-style-type: none;">
+    {% for item in allEvent %}
+          <a href = "{{ url_for('main.event', eventId = item.id) }}" style="text-decoration:none; color:white">
+            <img src="{{ url_for('static', filename='placeholder.jpg')}}" height="200">
+            <li>{{ item.eventName }} &nbsp;&nbsp;{{ item.eventDate }}</li>
+            <li>Status: {{ item.eventStatus }}</li>
+          </a>
+      <br><br><hr><br><br>
+    {% endfor %}
+  </ul>
+  </div>
     </main>
     {% endblock %}

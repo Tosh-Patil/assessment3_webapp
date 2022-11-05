@@ -29,7 +29,7 @@ class RegisterForm(FlaskForm):
     #submit button
     submit = SubmitField("Register")
 
-    # Check to ensure username is not already taken
+    # Check to ensure username and email are not already taken
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
@@ -49,7 +49,6 @@ class CreateEventForm(FlaskForm):
     ticket_price = StringField('Ticket price', validators=[InputRequired()])
     number_of_tickets = IntegerField('Number of tickets availiable', validators=[NumberRange(min=0, max=100000)])
     event_status = SelectField("Event Status", choices=(("Open", "Open"), ("Closed","Closed"), ("Sold out", "Sold Out"), ("Cancelled", "Cancelled"), ("Unpublished", "Unpublished")))
-    # event_img=FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'),FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     submit = SubmitField("Create Event")
 
 # Used to find event info for event of user's choice

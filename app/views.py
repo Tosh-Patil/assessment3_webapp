@@ -7,18 +7,19 @@ from .auth import session
 from . import db
 from sqlalchemy.orm.attributes import flag_modified
  
+ # Create a blueprint
 bp = Blueprint('main', __name__, template_folder='templates')
 
 
 @bp.route('/')
 @bp.route('/index')
 def index():
-    #Get list of events
-    event = Event.query.order_by(Event.eventName)
+    #Get list of all events
+    allEvent = Event.query.all()
+    return render_template('index.html', allEvent=allEvent)
 
 
-    return render_template('index.html', **locals())
-
+# If users get a 404 or 500 error load the corressponding error page
 @bp.errorhandler(404)
 def page_not_found():
     return render_template('404.html')
@@ -27,29 +28,29 @@ def page_not_found():
 def page_not_found():
     return render_template('500.html')
 
-@bp.route('/event_info_page', methods=['GET', 'POST'])
-def event_info_page():
-    def get_choices():
-        return Event.query.order_by(Event.eventName)
 
-    form = FindEventForm()
-    choices = get_choices
-    form.event_id.choices = choices
-    
-    if form.validate_on_submit():
-        event = Event.query.filter_by(eventName=form.data).first()
-        event_id = event.id
-        event_user = event.userId
-        event_name = event.eventName
-        event_date = event.eventDate
-        event_t_type = event.ticketTypes
-        event_desc = event.description
-        event_stat = event.eventStatus
-        event_comments = event.comments
-        event_orders = event.ticketOrders
+#@bp.route('/event_info_page', methods=['GET', 'POST'])
+#def event_info_page():
+#    def get_choices():
+#        return Event.query.order_by(Event.eventName)
+#
+#    form = FindEventForm()
+#    choices = get_choices
+#    form.event_id.choices = choices
+#    
+#    if form.validate_on_submit():
+#        event = Event.query.filter_by(eventName=form.data).first()
+#        event_id = event.id
+#        event_user = event.userId
+#        event_name = event.eventName
+#        event_date = event.eventDate
+#        event_t_type = event.ticketTypes
+#        event_desc = event.description
+#        event_stat = event.eventStatus
+#        event_comments = event.comments
+#        event_orders = event.ticketOrders
+#    return render_template('event_info_page.html', form=form)
 
-
-    return render_template('event_info_page.html', form=form)
 
 @bp.route('/event_creation', methods=['GET', 'POST'])
 def event_creation():
@@ -57,6 +58,8 @@ def event_creation():
         form = CreateEventForm()
         if form.validate_on_submit():
             file = request.files['file']
+            # If input data meets all validators and user is logged in send
+            # all new event data to a database
             event = Event(
                 creatorUserId = session['UserID'],
                 eventName = form.event_name.data,
@@ -78,25 +81,24 @@ def event_creation():
 
 
 
-@bp.route('/booking_history', methods=['GET', 'POST'])
-def booking_history():
-    bookings = []
+#@bp.route('/booking_history', methods=['GET', 'POST'])
+#def booking_history():
+#    bookings = []
+#    if "UserID" in session:
+#        tickets = ticketOrder.query.filter_by(session['UserID']).all()
+#        for ticket in tickets:
+#            bookings.append(ticket)
+#    else:
+#        flash('Not logged in')
+#        return redirect('/login')
+#    return render_template('booking_history.html', **locals())
 
-    if "UserID" in session:
-        tickets = ticketOrder.query.filter_by(session['UserID']).all()
-        for ticket in tickets:
-            bookings.append(ticket)
-
-
-    else:
-        flash('Not logged in')
-        return redirect('/login')
-
-    return render_template('booking_history.html', **locals())
 
 
 @bp.route('/my_events', methods=['GET', 'POST'])
 def my_events():
+    # Check user is logged in, and if so fetch all event data from the database
+    # that matches with their user id
     if current_user.is_authenticated:
         myName = User.query.filter_by(id=current_user.id)
         myEvent = Event.query.filter_by(creatorUserId=current_user.id).all()
@@ -106,16 +108,9 @@ def my_events():
     return render_template("my_events.html", myName=myName, myEvent=myEvent)
 
 
+# Create dynamic url to fetch details on any event
 @bp.route('/event/<int:eventId>', methods=['GET', 'POST'])
 def event(eventId):
     form=BuyTicket()
     chosenEvent = Event.query.filter_by(id=eventId)
-
-    if form.validate_on_submit():
-        amountOfTicketsPurchases = form.ticket_amount.data
-        # currentTicketNumber = Event.query.filter(Event.numberOfTickets)
-        #new_ticket_number = currentTicketNumber - amountOfTicketsPurchases
-
-        #chosenEvent.numberOfTickets = request.form[new_ticket_number]
-        #db.session.commit()
     return render_template("event_info_page.html", chosenEvent=chosenEvent, form=form)
