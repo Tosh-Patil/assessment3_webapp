@@ -80,27 +80,20 @@ def event_creation():
 
 @bp.route('/booking_history', methods=['GET', 'POST'])
 def booking_history():
-    event = []
-    quantity = []
+    bookings = []
 
     if "UserID" in session:
         tickets = ticketOrder.query.filter_by(session['UserID']).all()
         for ticket in tickets:
-            event.append(ticket.eventId)
-            quantity.append(ticket.quantity)
-            
+            bookings.append(ticket)
+
+
     else:
         flash('Not logged in')
         return redirect('/login')
 
     return render_template('booking_history.html', **locals())
 
-
-@bp.route('/user', methods=['GET', 'POST'])
-@login_required
-def user():
-
-    return render_template('user.html')
 
 @bp.route('/my_events', methods=['GET', 'POST'])
 def my_events():
