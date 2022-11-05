@@ -18,7 +18,7 @@
               {{ % for booking in bookings % }}
                 <tr>
                     <td><a href="/event_info_page/{{booking.eventId}}">
-                        <img src="{{ url_for('static', filename='Maggie Olsen.jpg')}}" height="100" width="100"></a></td>
+                        <img src="{{Event.query.get(booking.eventId).eventImg}}" height="100" width="100"></a></td>
                     <td><p>Ticket Type: {{booking.ticketType}} <br> Quantity: {{booking.quantity}} <br> Booking ID: {{booking.id}}</p></td>
                 </tr>
                 {{ % endfor % }}
