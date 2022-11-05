@@ -29,6 +29,7 @@ class Event(db.Model):
     description = db.Column(db.String(2048), nullable=False)
     eventStatus = db.Column(db.String(32), nullable=False)
     ticketPrice = db.Column(db.String(32), nullable=False)
+    numberOfTickets = db.Column(db.Integer(), nullable=False)
     eventImg = db.Column(db.LargeBinary, nullable=False)
     comments = db.relationship('Comment', backref='event', lazy=True)
     ticketOrders = db.relationship('ticketOrder', backref='event', lazy=True)

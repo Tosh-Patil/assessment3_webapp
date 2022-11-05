@@ -63,6 +63,7 @@ def event_creation():
             eventTime = form.event_time.data,
             description = form.event_description.data,
             ticketPrice = form.ticket_price.data,
+            numberOfTickets = form.number_of_tickets.data,
             eventStatus = form.event_status.data,
             eventImg = file.read()
         )
