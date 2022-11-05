@@ -21,13 +21,15 @@ class User(db.Model, UserMixin):
 # Defines the parameters for the 'Events' db table
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('user.id'),
+    creatorUserId = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
     eventName = db.Column(db.String(64), nullable=False)
     eventDate = db.Column(db.String(64), nullable=False)
-    ticketTypes = db.Column(db.String(64), nullable=False)
+    eventTime = db.Column(db.String(64), nullable=False)
     description = db.Column(db.String(2048), nullable=False)
     eventStatus = db.Column(db.String(32), nullable=False)
+    ticketPrice = db.Column(db.String(32), nullable=False)
+    eventImg = db.Column(db.LargeBinary, nullable=False)
     comments = db.relationship('Comment', backref='event', lazy=True)
     ticketOrders = db.relationship('ticketOrder', backref='event', lazy=True)
 

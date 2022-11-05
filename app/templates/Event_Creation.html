@@ -5,83 +5,47 @@
    <main>
 <!--Generic event picture-->
 <!--First row, picture and event details-->
+<form action = "" method = "post" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
   <div class="row align-items-start">
-    <div class="col-md-4">
+    <div class="col-md-4" style="padding-top: 20px;">
         <img src="{{ url_for('static', filename='Open sign.jpg')}}" height="400" width="400">
     </div>
     <!--Event Details-->
-    <div class="col-md-4" style="padding-top:20px;">
-      <h6>Event Details</h6>
+    <div class="col-md-4" style="padding-top:20px; padding-bottom: 20px;">
+      <h6 style="font-size: 32px;">Event Details</h6>
       <div class="mb-3">
-        <label for="exampleInput" class="form-label">DD/MM/YYYY</label>
-
+        <label for="exampleInput" class="form-label">Event Name</label><br>
+        {{ form.event_name(size=32) }}
       </div>
-      {{ form.event_date(size=32) }}
       <div class="mb-3">
-        <label for="exampleInput" class="form-label">Event Name</label>
+        <label for="exampleInput" class="form-label">DD/MM/YYYY</label><br>
+        {{ form.event_date(size=32) }}
       </div>
-      {{ form.event_name(size=32) }}
       <div class="mb-3">
-        <label for="exampleInput" class="form-label">Description</label>
+        <label for="exampleInput" class="form-label">Event Start Time</label><br>
+        {{ form.event_time(size=32) }}
       </div>
-      {{ form.event_description(size=32) }}
-  </div>
-	<form action = "" method = "post">
-
-<!--Ticket Type Checkboxes-->
-    <div class="row" style= "padding-bottom: 40px;">
-      <div class="col-md-4 offset-md-4">
-        <h6>Types of tickets available</h6>
-        <div style="padding-bottom: 5px;">
-          <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
-          <label class="btn btn-outline-secondary" for="btn-check-2-outlined">$25 General Entry</label><br>
-        </div>
-        <div style="padding-bottom: 5px;">
-          <input type="checkbox" class="btn-check" id="btn-check-3-outlined" checked autocomplete="off">
-          <label class="btn btn-outline-secondary" for="btn-check-3-outlined">$50 Rooftop Viewing</label><br>
-        </div>
-        <div style="padding-bottom: 5px;">
-          <input type="checkbox" class="btn-check" id="btn-check-4-outlined" checked autocomplete="off">
-          <label class="btn btn-outline-secondary" for="btn-check-4-outlined">$99 Backstage Pass</label><br>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInput" class="form-label">Ticket Price</label>
-        </div>
-          {{ form.ticket_price(size=32) }}
-
+      <div class="mb-3">
+        <label for="exampleInput" class="form-label">Description</label><br>
+        {{ form.event_description(size=32) }}
       </div>
-
+      <div class="mb-3">
+        <label for="exampleInput" class="form-label">Event Status</label><br>
+        {{ form.event_status(size=6) }}
+      </div>
+      <div class="mb-3">
+        <label for="exampleInput" class="form-label">Ticket Price</label><br>
+        {{ form.ticket_price(size=32) }}
+      </div>
+      <div class="mb-3">
+        <label for="exampleInput" class="form-label">Upload Event Image</label><br>
+        <input type="file" name="file">
+      </div>
+      <div style="padding-bottom: 10px ;">
+      {{form.submit()}}
     </div>
-
-
-
-
-
-
-<!-- Image submission-->
-
-    <div class="row align-items-start" style= "padding-bottom: 40px;">
-        <div class="col-md-4 offset-md-4">
-            <form>
-            <h4>Enter image URLs</h4>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Img</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputNumber1" class="form-label">Img</label>
-              <input type="phone number" class="form-control" id="exampleInputNumber1">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputNumber1" class="form-label">Img</label>
-                <input type="phone number" class="form-control" id="exampleInputNumber1">
-              </div>
-
-            {{form.submit()}}
-          </form>
-        </div>
-
+  </div>
 	</form>
-
-   </main>
+</main>
 {% endblock %}
